@@ -1,15 +1,12 @@
-
-<p align="center">
+<div align="center">
   <img src="images/logo/logo.jpeg" alt="Logo Reni Bio" width="120" />
-</p>
-
-<h1 align="center">🥗 Reni Bio - Produtos Naturais</h1>
-
-<p align="center"><b>Site moderno, responsivo e integrado ao WhatsApp para venda de produtos naturais.</b></p>
-
-<p align="center">
+  
+  # 🥗 Reni Bio - Produtos Naturais
+  
+  <b>Site moderno, responsivo e integrado ao WhatsApp para venda de produtos naturais.</b>
+  <br><br>
   <img src="images/telainicial.png" alt="Tela Inicial" width="350" />
-</p>
+</div>
 
 ---
 

@@ -6,7 +6,7 @@
     <title>Reni Bio - Produtos Naturais</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo/logo.jpeg" type="image/png">
+    <link rel="icon" href="images/logo/logo_.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -16,7 +16,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <i class="fas fa-leaf"></i>
+                    <img src="images/logo/logo_.png" alt="Logo Renibio" style="height:2.2em; vertical-align:middle; margin-right:0.5em; border-radius: 8px;" />
                     <span>Reni Bio</span>
                 </div>
                 <ul class="nav-menu">
@@ -43,12 +43,16 @@
                     <h1 id="typing-title"></h1>
                     <script>
                     document.addEventListener("DOMContentLoaded", function() {
-                        const text = "Reni Bio";
+                        const text = "RENIBIO";
                         const el = document.getElementById("typing-title");
                         let i = 0;
                         function type() {
                             if (i < text.length) {
-                                el.textContent = text.substring(0, i + 1);
+                                let display = "";
+                                for (let j = 0; j <= i; j++) {
+                                    display += "<span style='font-weight:900; color:#388E3C; letter-spacing:1px;'>" + text[j] + "</span>";
+                                }
+                                el.innerHTML = display;
                                 i++;
                                 setTimeout(type, 300);
                             }
@@ -57,7 +61,7 @@
                     });
                     </script>
                     <h2>Produtos <span class="highlight">Naturais</span></h2>
-                    <p>Saúde e sabor direto da natureza para você!</p>
+                    <p>Produtos Naturais para saúde intestinal.</p>
                     <div class="hero-products">
                         <div class="hero-products-tags">
                             <span class="product-tag">Kombucha</span>
@@ -71,11 +75,11 @@
                 </div>
                 <div class="hero-image ultra-hero-image">
                     <div class="ultra-hero-img-bg"></div>
-                    <img src="images/telainicial.png" alt="Kombucha, Kefir e Pão Integral" class="ultra-hero-photo">
+                    <img src="images/logo/tela2.png" alt="Kombucha, Kefir e Pão Integral" class="ultra-hero-photo">
                     <div class="ultra-hero-card no-overlap">
                         <i class="fas fa-seedling hero-icon"></i>
                         <h3>100% Natural</h3>
-                        <p>Produtos artesanais feitos com ingredientes selecionados</p>
+                        <p>Produtos Naturais para saúde intestinal.</p>
                     </div>
                 </div>
             </div>
@@ -91,9 +95,13 @@
                     <div class="product-image">
                         <div class="product-gallery">
                             <div class="gallery-main">
-                                <img src="#" alt="Kombucha 500ml" class="product-photo active" data-index="0">
-                                <img src="#" alt="Kombucha 500ml - Detalhe" class="product-photo" data-index="1">
-                                <img src="#" alt="Kombucha 500ml - Uso" class="product-photo" data-index="2">
+                                <!-- Ícone de expandir -->
+                                <button class="expand-photo-btn" onclick="expandProductPhoto(this)" title="Ampliar foto">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <img src="images/notfound/notfound.png" alt="Kombucha 500ml" class="product-photo active" data-index="0">
+                                <img src="images/notfound/notfound.png" alt="Kombucha 500ml - Detalhe" class="product-photo" data-index="1">
+                                <img src="images/notfound/notfound.png" alt="Kombucha 500ml - Uso" class="product-photo" data-index="2">
                                 
                                 <!-- Navegação do carrossel -->
                                 <button class="gallery-nav prev" onclick="changeImage(this, -1)" style="display: none;">
@@ -125,6 +133,15 @@
                         <button class="buy-button" onclick="redirectToWhatsApp('Olá! Gostaria de comprar Kombucha 500ml por R$ 10,00')">
                             COMPRAR
                         </button>
+                        <div class="ingredients-center">
+                            <button class="ingredients-toggle" onclick="toggleIngredients(this)">
+                                <i class="fas fa-seedling"></i> Ingredientes
+                            </button>
+                            <div class="product-ingredients-modern" style="display:none;">
+                                <i class="fas fa-seedling ingredients-icon"></i>
+                                <span class="ingredients-label">em breve ... </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -132,6 +149,10 @@
                     <div class="product-image">
                         <div class="product-gallery">
                             <div class="gallery-main">
+                                <!-- Ícone de expandir -->
+                                <button class="expand-photo-btn" onclick="expandProductPhoto(this)" title="Ampliar foto">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
                                 <img src="images/kefir/1.jpeg" alt="Kefir 300ml" class="product-photo active" data-index="0">
                                 <img src="images/kefir/2.jpeg" alt="Kefir 300ml - Detalhe" class="product-photo" data-index="1">
                                 <img src="images/kefir/3.jpeg" alt="Kefir 300ml - Detalhe" class="product-photo" data-index="2">
@@ -149,6 +170,8 @@
                                 <div class="gallery-dots" style="display: none;">
                                     <span class="dot active" onclick="currentImage(this, 0)"></span>
                                     <span class="dot" onclick="currentImage(this, 1)"></span>
+                                    <span class="dot" onclick="currentImage(this, 2)"></span>
+                                    <span class="dot" onclick="currentImage(this, 3)"></span>
                                 </div>
                             </div>
                         </div>
@@ -166,6 +189,15 @@
                         <button class="buy-button" onclick="redirectToWhatsApp('Olá! Gostaria de comprar Kefir 300ml por R$ 10,00')">
                             COMPRAR
                         </button>
+                        <div class="ingredients-center">
+                            <button class="ingredients-toggle" onclick="toggleIngredients(this)">
+                                <i class="fas fa-seedling"></i> Ingredientes
+                            </button>
+                            <div class="product-ingredients-modern" style="display:none;">
+                                <i class="fas fa-seedling ingredients-icon"></i>
+                                <span class="ingredients-label">em breve ...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -173,10 +205,16 @@
                     <div class="product-image">
                         <div class="product-gallery">
                             <div class="gallery-main">
-                                <img src="images/pao/1.jpeg" alt="Pão Integral 500g" class="product-photo active" data-index="0">
-                                <img src="images/pao/2.jpeg" alt="Pão Integral 500g" class="product-photo active" data-index="1">
-                                <img src="images/pao/3.jpeg" alt="Pão Integral 500g" class="product-photo active" data-index="2">
-                                <img src="images/pao/4.jpeg" alt="Pão Integral 500g" class="product-photo active" data-index="3">
+                                <!-- Ícone de expandir -->
+                                <button class="expand-photo-btn" onclick="expandProductPhoto(this)" title="Ampliar foto">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <img src="images/pao/pao_1.jpg" alt="Pão Integral 500g" class="product-photo active" data-index="0">
+                                <img src="images/pao/pao_2.jpg" alt="Pão Integral 500g" class="product-photo" data-index="1">
+                                <img src="images/pao/3.jpeg" alt="Pão Integral 500g" class="product-photo" data-index="2">
+                                <img src="images/pao/4.jpeg" alt="Pão Integral 500g" class="product-photo" data-index="3">
+                                <img src="images/pao/pão_3.jpg" alt="Pão Integral 500g" class="product-photo" data-index="4">
+                                <img src="images/pao/pao_4.jpg" alt="Pão Integral 500g" class="product-photo" data-index="5">
                                 
                                 <!-- Navegação do carrossel -->
                                 <button class="gallery-nav prev" onclick="changeImage(this, -1)" style="display: none;">
@@ -191,6 +229,9 @@
                                     <span class="dot active" onclick="currentImage(this, 0)"></span>
                                     <span class="dot" onclick="currentImage(this, 1)"></span>
                                     <span class="dot" onclick="currentImage(this, 2)"></span>
+                                    <span class="dot" onclick="currentImage(this, 3)"></span>
+                                    <span class="dot" onclick="currentImage(this, 4)"></span>
+                                    <span class="dot" onclick="currentImage(this, 5)"></span>
                                 </div>
                             </div>
                         </div>
@@ -208,11 +249,38 @@
                         <button class="buy-button" onclick="redirectToWhatsApp('Olá! Gostaria de comprar Pão Integral 500g por R$ 15,00')">
                             COMPRAR
                         </button>
+                        <div class="ingredients-center">
+                            <button class="ingredients-toggle" onclick="toggleIngredients(this)">
+                                <i class="fas fa-seedling"></i> Ingredientes
+                            </button>
+                            <div class="product-ingredients-modern" style="display:none;">
+                                <i class="fas fa-seedling ingredients-icon"></i>
+                                <span class="ingredients-label">em breve ... </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal de foto ampliada -->
+    <div id="photo-modal" class="photo-modal" style="display:none;">
+        <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
+        <button class="modal-nav modal-prev" onclick="changeModalImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="photo-modal-img" src="" alt="Foto ampliada do produto" />
+        <button class="modal-nav modal-next" onclick="changeModalImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="modal-info">
+            <span id="modal-counter" class="modal-counter"></span>
+        </div>
+        <div class="modal-dots-container">
+            <div id="modal-dots" class="modal-dots"></div>
+        </div>
+    </div>
 
     <!-- Como Usar Section -->
     <section id="como-usar" class="how-to-use">
@@ -222,17 +290,21 @@
                 <div class="usage-card">
                     <i class="fas fa-wine-bottle"></i>
                     <h3>Kombucha</h3>
-                    <p>Beba gelada, preferencialmente pela manhã ou após exercícios. Pode ser consumida pura ou com frutas.</p>
+                    <p>Considerada como refrigerante natural. Beba gelada, preferencialmente após 10 a 15 min após as refeições. Auxilia no processo digestivo dos alimentos, caso prefira pode utilizar pela manhã ou após exercícios. Pode ser consumida pura ou com frutas.</p>
                 </div>
                 <div class="usage-card">
                     <i class="fa-solid fa-whiskey-glass"></i>
                     <h3>Kefir</h3>
-                    <p>Consuma 1 pote por dia, preferencialmente pela manhã em jejum. Pode ser misturado com frutas ou mel.</p>
+                    <p>Consuma preferencialmente pela manhã. Pode passar no pão ou consumir misturado com frutas ou mel. Substitui o yogurte natural e é produzido com leite natural sem conservantes. O consumo regular auxilia na imunidade. Caso prefira preparamos kefir de leite de coco em casos de intolerância a lactose.</p>
                 </div>
                 <div class="usage-card">
                     <i class="fas fa-bread-slice"></i>
-                    <h3>Pão Integral</h3>
-                    <p>Mantenha em local seco e arejado. Ideal para café da manhã e lanches saudáveis.</p>
+                    <h3>Pão Integral sem Glúten e sem Lactose</h3>
+                    <p>
+                        Armazene em local seco e fresco, de preferência em recipiente fechado. 
+                        Ideal para café da manhã ou lanches, pode ser consumido puro, com geleias, pastas ou acompanhando refeições. 
+                        Uma opção saudável para quem busca alimentação equilibrada e restrições alimentares.
+                    </p>
                 </div>
             </div>
         </div>
@@ -313,8 +385,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-leaf"></i>
-                    <span>Produtos Naturais</span>
+                    <img src="images/logo/logo_.png" alt="Logo Renibio" style="height:2.2em; vertical-align:middle; margin-right:0.5em; border-radius: 8px;" />
+                    <span>Reni Bio</span>
                 </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
@@ -336,11 +408,27 @@
         <i class="fab fa-whatsapp"></i>
     </div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Modal de foto ampliada -->
+    <div id="photo-modal" class="photo-modal" style="display:none;">
+        <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
+        <button class="modal-nav modal-prev" onclick="changeModalImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="photo-modal-img" src="" alt="Foto ampliada do produto" />
+        <button class="modal-nav modal-next" onclick="changeModalImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="modal-info">
+            <span id="modal-counter" class="modal-counter"></span>
+        </div>
+        <div class="modal-dots-container">
+            <div id="modal-dots" class="modal-dots"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
 <script>
     // Bloqueia clique direito
     document.addEventListener('contextmenu', function(e) {

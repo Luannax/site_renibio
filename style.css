@@ -1,3 +1,343 @@
+.expand-photo-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.92);
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.10);
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s;
+}
+.expand-photo-btn:hover {
+    background: #e8f5e9;
+}
+.expand-photo-btn i {
+    color: #388E3C;
+    font-size: 1.3em;
+}
+.gallery-main {
+    position: relative;
+}
+/* Modal de foto ampliada */
+.photo-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-modal img {
+    max-width: 80vw;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(255,255,255,0.1);
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    border: 2px solid white;
+    display: block;
+}
+
+.photo-modal img:hover {
+    transform: scale(1.02);
+}
+
+.photo-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5em;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    z-index: 10001;
+    transition: color 0.2s;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.photo-modal-close:hover {
+    color: #4CAF50;
+}
+
+/* Contador de imagens */
+.modal-info {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 10001;
+}
+
+.modal-counter {
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* Navegação do modal */
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #4CAF50;
+    transition: all 0.3s ease;
+    z-index: 10001;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-nav:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-prev {
+    left: 30px;
+}
+
+.modal-next {
+    right: 30px;
+}
+
+/* Indicadores do modal */
+.modal-dots-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+}
+
+.modal-dots {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-dot.active,
+.modal-dot:hover {
+    background: white;
+    transform: scale(1.2);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Responsivo para o modal */
+@media (max-width: 768px) {
+    .photo-modal img {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+    
+    .photo-modal-close {
+        top: 15px;
+        right: 15px;
+        font-size: 2em;
+    }
+    
+    .modal-info {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .modal-counter {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    .modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .modal-prev {
+        left: 15px;
+    }
+    
+    .modal-next {
+        right: 15px;
+    }
+    
+    .modal-dots-container {
+        bottom: 20px;
+    }
+    
+    .modal-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+.gallery-main {
+    position: relative;
+}
+/* Centralização do botão e bloco de ingredientes */
+.ingredients-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.product-ingredients-modern {
+    display: block;
+    background: #f6f9f6;
+    border-radius: 12px;
+    padding: 16px 18px 16px 18px;
+    margin: 10px 0 0 0;
+    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.07);
+    font-size: 1em;
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    animation: fadeIn 0.3s;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    max-width: 320px;
+}
+.product-ingredients-modern .ingredients-label {
+    color: #333;
+    font-weight: 400;
+    display: inline;
+}
+.product-ingredients-modern .ingredients-icon {
+    color: #388E3C;
+    font-size: 1.3em;
+    margin-bottom: 6px;
+    display: block;
+}
+.ingredients-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #388E3C;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 1em;
+    font-weight: 500;
+    margin: 14px 0 0 0;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1px 4px 0 rgba(56,142,60,0.07);
+    justify-content: center;
+}
+.ingredients-toggle i {
+    font-size: 1.1em;
+}
+.ingredients-toggle.open {
+    background: #388E3C;
+    color: #fff;
+}
+/* Botão moderno para ingredientes */
+.ingredients-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #388E3C;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 1em;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1px 4px 0 rgba(56,142,60,0.07);
+}
+.ingredients-toggle i {
+    font-size: 1.1em;
+}
+.ingredients-toggle.open {
+    background: #388E3C;
+    color: #fff;
+}
+/* Ingredientes moderno, linha única, responsivo e oculto por padrão */
+.product-ingredients-modern {
+    display: block;
+    background: #f6f9f6;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin: 8px 0 8px 0;
+    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.07);
+    font-size: 1em;
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    animation: fadeIn 0.3s;
+    white-space: normal;
+    word-break: break-word;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+}
+.product-ingredients-modern .ingredients-label {
+    color: #333;
+    font-weight: 400;
+}
+/* Ingredientes modernos para produtos */
+.product-ingredients-modern {
+    display: flex;
+    align-items: flex-start;
+    background: #f6f9f6;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin: 10px 0 8px 0;
+    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.07);
+    font-size: 1em;
+    gap: 6px;
+}
+.product-ingredients-modern .ingredients-label {
+    font-weight: 600;
+    color: #388E3C;
+    margin-right: 4px;
+}
+.product-ingredients-modern .ingredients-list {
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
 .hero-text .cta-button {
     display: block;
     margin: 32px auto 0 auto;

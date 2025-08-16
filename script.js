@@ -316,3 +316,181 @@ function currentImage(dot, index) {
     if (activeDot) activeDot.classList.remove('active');
     dot.classList.add('active');
 }
+
+// Exibe/esconde ingredientes de cada produto
+function toggleIngredients(btn) {
+    const box = btn.nextElementSibling;
+    if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'block';
+        btn.classList.add('open');
+    } else {
+        box.style.display = 'none';
+        btn.classList.remove('open');
+    }
+}
+
+// Variáveis globais para o modal de fotos
+let currentModalImages = [];
+let currentModalIndex = 0;
+
+function expandProductPhoto(btn) {
+    try {
+        // Pega todas as imagens do produto
+        const gallery = btn.closest('.product-gallery');
+        if (!gallery) {
+            return;
+        }
+        
+        const images = gallery.querySelectorAll('.product-photo');
+        if (images.length === 0) {
+            return;
+        }
+        
+        // Armazena todas as imagens e o índice atual
+        currentModalImages = Array.from(images).map(img => ({
+            src: img.src,
+            alt: img.alt
+        }));
+        
+        // Usa a primeira imagem por padrão
+        currentModalIndex = 0;
+        
+        // Encontra a imagem ativa se existir
+        const activeImg = gallery.querySelector('.product-photo.active');
+        if (activeImg) {
+            const activeIndex = Array.from(images).indexOf(activeImg);
+            if (activeIndex !== -1) {
+                currentModalIndex = activeIndex;
+            }
+        }
+        
+        // Abre o modal
+        openPhotoModal();
+        updateModalImage();
+        createModalDots();
+    } catch (error) {
+        console.error('Error in expandProductPhoto:', error);
+    }
+}
+
+function openPhotoModal() {
+    const modal = document.getElementById('photo-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Mostra/esconde botões de navegação baseado no número de imagens
+    const navButtons = modal.querySelectorAll('.modal-nav');
+    navButtons.forEach(btn => {
+        btn.style.display = currentModalImages.length > 1 ? 'flex' : 'none';
+    });
+    
+    // Adiciona listener para teclas do teclado
+    document.addEventListener('keydown', handleModalKeyPress);
+}
+
+function closePhotoModal() {
+    const modal = document.getElementById('photo-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Remove listener das teclas
+    document.removeEventListener('keydown', handleModalKeyPress);
+}
+
+function changeModalImage(direction) {
+    currentModalIndex += direction;
+    
+    // Loop infinito
+    if (currentModalIndex >= currentModalImages.length) {
+        currentModalIndex = 0;
+    }
+    if (currentModalIndex < 0) {
+        currentModalIndex = currentModalImages.length - 1;
+    }
+    
+    updateModalImage();
+    updateModalDots();
+}
+
+function updateModalImage() {
+    try {
+        const modalImg = document.getElementById('photo-modal-img');
+        const counter = document.getElementById('modal-counter');
+        
+        if (!modalImg || currentModalImages.length === 0) {
+            return;
+        }
+        
+        const currentImage = currentModalImages[currentModalIndex];
+        
+        // Atualiza contador
+        if (currentModalImages.length > 1 && counter) {
+            counter.textContent = `${currentModalIndex + 1} / ${currentModalImages.length}`;
+            counter.style.display = 'block';
+        } else if (counter) {
+            counter.style.display = 'none';
+        }
+        
+        // Atualiza a imagem
+        modalImg.src = currentImage.src;
+        modalImg.alt = currentImage.alt;
+        modalImg.style.opacity = '1';
+        modalImg.style.display = 'block';
+        
+    } catch (error) {
+        console.error('Error in updateModalImage:', error);
+    }
+}
+
+function createModalDots() {
+    const dotsContainer = document.getElementById('modal-dots');
+    dotsContainer.innerHTML = '';
+    
+    // Só criar dots se houver mais de uma imagem
+    if (currentModalImages.length <= 1) {
+        return;
+    }
+    
+    currentModalImages.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.className = 'modal-dot';
+        if (index === currentModalIndex) {
+            dot.classList.add('active');
+        }
+        dot.onclick = () => {
+            currentModalIndex = index;
+            updateModalImage();
+            updateModalDots();
+        };
+        dotsContainer.appendChild(dot);
+    });
+}
+
+function updateModalDots() {
+    const dots = document.querySelectorAll('.modal-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentModalIndex);
+    });
+}
+
+function handleModalKeyPress(event) {
+    switch(event.key) {
+        case 'Escape':
+            closePhotoModal();
+            break;
+        case 'ArrowLeft':
+            changeModalImage(-1);
+            break;
+        case 'ArrowRight':
+            changeModalImage(1);
+            break;
+    }
+}
+
+// Fecha modal ao clicar fora da imagem
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('photo-modal');
+    if (event.target === modal) {
+        closePhotoModal();
+    }
+});
